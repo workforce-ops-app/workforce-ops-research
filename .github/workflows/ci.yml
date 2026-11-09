@@ -1,0 +1,26 @@
+# Pull request and branch checks. The required status check is "ci / overall".
+# The steps live in the shared .github repo; this repo's ci.toml lists its operations.
+name: ci
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, labeled, unlabeled, ready_for_review]
+  push:
+    branches: [main, production, "review/**"]
+  workflow_dispatch:
+
+# A newer push to a PR replaces its older run. Runs on main, production, and
+# review branches are never cancelled, so every commit there gets a full result.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  ci:
+    uses: workforce-ops-app/.github/.github/workflows/reusable-ci.yml@main
+    with:
+      stack: python
