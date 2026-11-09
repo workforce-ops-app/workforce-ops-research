@@ -1,2 +1,2 @@
 # Tooling for this repo's own CI. Dependabot keeps these pins current.
-ruff==0.17.3
+ruff==0.17.4
