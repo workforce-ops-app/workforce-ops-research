@@ -36,6 +36,6 @@ requires = ["tests/__init__.py"]
 name = "report-build"
 run = 'docker run --rm -v "{repo}/report:/doc" -w /doc texlive/texlive:latest latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex && python report/check_pages.py'
 requires = ["report/main.tex"]
-summary_patterns = ['(\d+) pages \(limit \d+\); (\d+) to-do']
+summary_patterns = ['(\d+) pages \(limit', '(\d+) to-do markers']
 summary_format = "{0} pages · {1} to-do markers"
 timeout_minutes = 20
