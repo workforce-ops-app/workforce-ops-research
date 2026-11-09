@@ -1,0 +1,15 @@
+% Threats to validity (report plan): test data selection, pattern tuning, lab
+% environment, small team, out-of-scope network attacks, design choices.
+\section{Threats to Validity}
+
+\textbf{Selection of test data.} Public attack collections may over-represent attacks that are easy to recognise. The tricky harmless set and the field set are there to check this, but neither is drawn from real attackers.
+
+\textbf{Pattern tuning.} The same team wrote the patterns and the harmless set. The harmless set and the test split were committed before tuning, and the test set was scored once.
+
+\textbf{Lab environment.} All testing ran on local copies, not a production deployment, and timing comes from one machine.
+
+\textbf{Small team.} Two auditors who also built the application may share blind spots; the findings for RQ2 (b) and RQ3 describe one application, not web applications in general.
+
+\textbf{Out of scope.} Network-level flooding and the compiled code beneath the application (the Python interpreter, nginx, native libraries) were not audited.
+
+\textbf{Design choices.} \pending{for example password-only sign-in, and how it limits the authentication findings.}

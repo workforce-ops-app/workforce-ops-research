@@ -1,0 +1,12 @@
+% Multi-tenant SaaS, RBAC with scopes, the web attacks covered in the course
+% (report plan). Kept short: only what a reader needs for the method.
+\section{Background}
+
+\subsection{Multi-tenant applications}
+All companies' data is stored in one MySQL database. Every company-owned table carries a company identifier, and four layers enforce separation: an automatic query filter, company-aware foreign keys, a per-request company context taken only from the session, and a cross-company test suite run against every endpoint. Records of another company answer \emph{not found}, so their existence is not revealed.
+
+\subsection{Role-based access control with scopes}
+Permissions are granted through roles, and each role assignment has a \emph{scope}: the whole company, a department, a team, or one person. Acting on another person also requires a position above them in the reporting chain, and nobody may grant a permission they do not hold. \pending{one sentence on why scopes and the reporting chain make access control harder to get right.}
+
+\subsection{Web attacks covered}
+\pending{a short paragraph each, with a citation: SQL injection, cross-site scripting, cross-site request forgery, session hijacking; and why memory-corruption attacks (buffer overflow, return-oriented programming) cannot arise in our own Python and JavaScript code, while the compiled code underneath relies on ASLR, stack canaries, and non-executable memory.}
