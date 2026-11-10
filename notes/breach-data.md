@@ -1,10 +1,10 @@
 # Breach data notes for RQ2 (a): are internal or external threats more common?
 
-Compiled 2026-11-09. Figures marked "(derived)" were calculated from counts printed in the primary source. Figures marked "(not verified from primary source)" come only from press coverage or vendor summaries.
+Compiled 2026-11-09. Updated 2026-11-10 after review: the Ponemon/DTEX negligent share now uses the figure the full report prints, and the HHS data is marked as context only. Figures marked "(derived)" were calculated from counts printed in the primary source. Figures marked "(not verified from primary source)" come only from press coverage or vendor summaries.
 
 ## In short
 
-In forensic breach caseloads, external actors clearly cause most data breaches. The 2026 Verizon DBIR (22,345 breaches with a known actor, incidents from 1 Nov 2024 to 31 Oct 2025) attributes 88% of breaches to external actors and 12% to internal actors. The internal figure includes honest mistakes as well as malice. The internal share moves a lot from year to year (34% in the 2019 DBIR, 35% in 2024, 18% in 2025, 12% in 2026). The DBIR itself explains these swings mostly by changes in who contributes data and how much mandatory-disclosure data it receives, not by a real change in insider behaviour. The internal share is also much higher in some sectors (Public Administration 44%, Healthcare 19% to 30%). HHS OCR data on large US healthcare breaches (81% hacking/IT incidents in 2024) points the same way. Survey-based insider studies (Ponemon/DTEX) do not measure prevalence share at all: they only survey organisations that already had insider incidents, so they cannot answer "which is more common". IBM's survey of 600 breached organisations finds malicious insider attacks are the costliest initial vector (USD 4.92M), not the most common. Proportionate claim: **external threats account for most confirmed breaches in the best available datasets, but insiders (mostly through error) are a persistent minority whose measured share depends heavily on sector and on how breaches get reported.**
+In forensic breach caseloads, external actors clearly cause most data breaches. The 2026 Verizon DBIR (22,345 breaches with a known actor, incidents from 1 Nov 2024 to 31 Oct 2025) attributes 88% of breaches to external actors and 12% to internal actors. The internal figure includes honest mistakes as well as malice. The internal share moves a lot from year to year (34% in the 2019 DBIR, 35% in 2024, 18% in 2025, 12% in 2026). The DBIR itself explains these swings mostly by changes in who contributes data and how much mandatory-disclosure data it receives, not by a real change in insider behaviour. The internal share is also much higher in some sectors (Public Administration 44%, Healthcare 19% to 30%). HHS OCR data on large US healthcare breaches (81% hacking/IT incidents in 2024) is context only, not evidence for RQ2: HHS classifies breaches by type, not by who caused them, so a hacking incident can still involve an insider and an access or disclosure breach can be an outsider. Survey-based insider studies (Ponemon/DTEX) do not measure prevalence share at all: they only survey organisations that already had insider incidents, so they cannot answer "which is more common". IBM's survey of 600 breached organisations finds malicious insider attacks are the costliest initial vector (USD 4.92M), not the most common. Proportionate claim: **external threats account for most confirmed breaches in the best available datasets, but insiders (mostly through error) are a persistent minority whose measured share depends heavily on sector and on how breaches get reported.**
 
 ---
 
@@ -105,7 +105,7 @@ The 2024 DBIR (p. 15) explains its 35% internal figure: "in part because of impr
 
 ## 4. Ponemon Institute / DTEX Systems, Cost of Insider Risks Global Report
 
-**Citation (latest):** Ponemon Institute and DTEX Systems, *2026 Cost of Insider Risks Global Report*, Feb. 2026. Press release: https://www.dtex.ai/newsroom/press-releases/insider-risk-costs-rise-as-ai-creates-new-blind-spots/ ; report page: https://ponemon.dtex.ai/ . I did not obtain the full report PDF, which sits behind a form.
+**Citation (latest):** Ponemon Institute and DTEX Systems, *2026 Cost of Insider Risks Global Report*, Feb. 2026. Press release: https://www.dtex.ai/newsroom/press-releases/insider-risk-costs-rise-as-ai-creates-new-blind-spots/ ; report page: https://ponemon.dtex.ai/ . The full report PDF sits behind a form. The negligent share below was checked against Figure 1 of the full report; the other 2026 figures still come from the press release until they are checked against it too.
 
 | Measure | 2026 edition (2025 data) | 2025 edition (2024 data) |
 |---|---|---|
@@ -113,10 +113,11 @@ The 2024 DBIR (p. 15) explains its 35% internal figure: "in part because of impr
 | Organisations / respondents | 354 organisations, 8,750 IT and IT security practitioners | 349 organisations, 8,306 practitioners |
 | Regions | North America, EMEA, Asia-Pacific | same |
 | Insider incidents per organisation | 25.4 | (not checked) |
-| Negligent / careless insiders | 13.8 incidents per org, about 54% of incidents (derived), USD 10.3M per year, about USD 747,107 per incident | 55% of incidents |
+| Negligent / careless insiders | 3,970 of 7,490 incidents, 53% (full report, Fig. 1); 13.8 incidents per org, USD 10.3M per year, about USD 747,107 per incident (press release) | 55% of incidents |
 | Malicious insiders | 27% of incidents, USD 4.7M (not verified from primary source; from IT Brief coverage) | 25% of incidents |
 | Outsmarted insiders (credential theft) | (not given in press release) | 20% of incidents |
 | Time to contain | 67 days | 81 days |
+| Total insider incidents | 7,490 (full report, Fig. 1) | (not checked) |
 | Fieldwork | Two months ending September 2025 | (not checked) |
 
 2025 edition figures come from the DTEX press release of 25 Feb 2025: https://www.dtex.ai/newsroom/press-releases/2025-ponemon-insider-threat-report-release
@@ -124,6 +125,8 @@ The 2024 DBIR (p. 15) explains its 35% internal figure: "in part because of impr
 **What it measures:** the cost and count of insider incidents inside organisations that took part. Participants are organisations that "experienced one or more material events caused by an insider" (2026 press release). That means the sample is chosen because it has insider incidents.
 
 **Method:** interview-based survey run by Ponemon, sponsored by DTEX, a vendor of insider risk products.
+
+**Why 53% and not a derived figure:** an earlier version of this note divided the per-organisation averages (13.8 / 25.4, about 54%). The full report prints the count directly (3,970 of 7,490 in Figure 1) [13], so that figure is used. The two do not match exactly because 7,490 incidents across 354 organisations is about 21.2 per organisation, not 25.4; the press release average may use a different base. Use the Figure 1 count.
 
 **Caveats:** The study cannot give an internal versus external prevalence share: it does not count external incidents, and the sample is chosen on the outcome. "Insider" here includes negligence and compromised (outsmarted) employees, which the DBIR would partly classify as external (for example, credential theft by an outside attacker). The sponsor has a commercial interest in the topic.
 
@@ -167,7 +170,9 @@ Sources: Paubox (10 June 2026) for CY2024: https://www.paubox.com/blog/ocr-repor
 
 **What it measures:** breaches that HIPAA-covered entities must report by law, classified by breach type (not by actor).
 
-**Caveats:** "Hacking/IT incident" is close to external, but "unauthorized access/disclosure" mixes insider error, insider snooping and some outsider cases. The split between large and small breaches matters a lot: large breaches are mostly hacking, while the many small ones (mostly misdirected paper or email) are mostly unauthorized access or disclosure, which is often insider error. Mandatory reporting makes this dataset much more complete for small error breaches than voluntary datasets.
+**Use in the report: context only.** These figures show which kinds of breach dominate one regulated sector. They are not evidence for RQ2, which asks about threat actors, so the report must not cite the 81% as support for external threats being more common.
+
+**Caveats:** "Hacking/IT incident" is a breach type, not an actor; it is often external, but "unauthorized access/disclosure" mixes insider error, insider snooping and some outsider cases. The split between large and small breaches matters a lot: large breaches are mostly hacking, while the many small ones (mostly misdirected paper or email) are mostly unauthorized access or disclosure, which is often insider error. Mandatory reporting makes this dataset much more complete for small error breaches than voluntary datasets.
 
 ## 7. Not used
 
@@ -186,8 +191,8 @@ ENISA Threat Landscape was not consulted in detail for this note. It describes t
 | DBIR 2026, Healthcare | 2026 | Same | Healthcare breaches | 1,438 breaches | 19% | 81% |
 | DBIR 2026, Public Administration | 2026 | Same | Public sector breaches | (see p. 90) | 44% | 56% |
 | IBM Cost of a Data Breach | 2025 (Mar 2024 to Feb 2025) | Interview survey | Breached organisations | 600 orgs | Human error root cause 26%; malicious insider cost USD 4.92M (share not printed) | Not split; malicious or criminal 51% includes insiders |
-| Ponemon/DTEX Cost of Insider Risks | 2026 (2025) | Interview survey of orgs with insider events | Insider incidents | 354 orgs, 8,750 respondents | 54% of insider incidents negligent (derived); 27% malicious (not verified from primary source) | Not measured |
-| HHS OCR breach reports | CY2024 | Mandatory regulatory reporting | Reported HIPAA breaches | 663 large breaches | Not by actor; unauthorized access/disclosure dominates small breaches (93% in CY2022) | Hacking/IT 81% of large breaches (not verified from primary source) |
+| Ponemon/DTEX Cost of Insider Risks | 2026 (2025) | Interview survey of orgs with insider events | Insider incidents | 354 orgs, 8,750 respondents | 53% of insider incidents negligent (3,970 of 7,490, Fig. 1); 27% malicious (not verified from primary source) | Not measured |
+| HHS OCR breach reports | CY2024 | Mandatory regulatory reporting | Reported HIPAA breaches | 663 large breaches | Not measured (breach types, not actors); unauthorized access/disclosure dominates small breaches (93% in CY2022) | Not measured; context only: hacking/IT is 81% of large breaches (not verified from primary source) |
 
 ## Why they differ
 
@@ -210,8 +215,9 @@ ENISA Threat Landscape was not consulted in detail for this note. It describes t
 
 **Should not claim:**
 - That external threats are more common "in all organisations" or "globally" as a measured fact. The DBIR explicitly rejects that its data is representative [1].
-- That "insiders cause X% of all breaches" using Ponemon/DTEX figures. That study measures cost and incident counts inside organisations chosen because they had insider events [6].
+- That "insiders cause X% of all breaches" using Ponemon/DTEX figures. That study measures cost and incident counts inside organisations chosen because they had insider events [6], [13].
 - A precise trend (for example, "insider threats fell by a third from 2025 to 2026"). The year-to-year swings in the DBIR mostly reflect changes in the data sources [1], [3].
+- That HHS OCR data shows external threats are more common. HHS counts breach types (hacking/IT, unauthorized access or disclosure), not threat actors [8].
 - That external attacks are always more harmful. Per breach, malicious insiders are the costliest vector in IBM's data [5].
 
 **Suggested proportionate wording:** "Published breach data indicates that external threats are more common than internal ones: the 2026 Verizon DBIR attributes 88% of the 22,345 breaches it analysed to external actors and 12% to internal actors [1]. However, the internal share varies widely between years (12% to 35% since 2024) and sectors (up to 44% in public administration), and most internal cases are errors rather than malicious acts. These figures come from non-representative samples, and malicious insiders are likely under-reported, so they show which threat is more frequently observed in reported breaches, not the true prevalence in all organisations."
@@ -243,3 +249,5 @@ ENISA Threat Landscape was not consulted in detail for this note. It describes t
 [11] "Insider risk costs soar as AI reshapes workplace data," IT Brief Australia, Feb. 25, 2026. [Online]. Available: https://itbrief.com.au/story/insider-risk-costs-soar-as-ai-reshapes-workplace-data
 
 [12] "OCR reports to Congress on HIPAA compliance and data breaches," HIPAA Journal, Feb. 22, 2024. [Online]. Available: https://www.hipaajournal.com/ocr-reports-to-congress-on-hipaa-compliance-and-data-breaches/
+
+[13] Ponemon Institute and DTEX Systems, "2026 Cost of Insider Risks Global Report," Feb. 2026. [Online]. Available: https://ponemon.dtex.ai/ (full report behind a form; Figure 1 gives the negligent share)
