@@ -15,6 +15,7 @@
 
 - Text still to be written is marked `\pending{what is missing}`. It prints in red, and `check_pages.py` counts what is left.
 - Every number comes from a file in `results/` or `notes/`; never type one in from memory.
+- Write only finished work in the past tense. Work that has not happened yet (audits, the detector, the test split) is written as planned, with a `\pending` marker to switch it to the past tense once it is done, so the draft never claims something we have not done.
 - Cite with `\cite{key}`, using the keys in `references.bib`.
 - Keep claims in proportion to the evidence, and answer each research question exactly as asked (report plan, quality check).
 
@@ -23,11 +24,11 @@
 With Docker (the same image CI uses), from the repository root:
 
 ```sh
-docker run --rm -v "$PWD/report:/doc" -w /doc texlive/texlive:latest latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+docker run --rm -v "$PWD/report:/doc" -w /doc texlive/texlive:latest@sha256:07e8062637249c4f780ca59f42cc2ed592bc2dc1db4320769406aee3f98aa70e latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 python report/check_pages.py
 ```
 
-On Windows Git Bash, put `MSYS_NO_PATHCONV=1` in front of `docker` so the paths are not rewritten. The first run downloads the TeX Live image (several gigabytes). Overleaf also opens this folder if you prefer an online editor: upload `report/` as a project.
+On Windows Git Bash, put `MSYS_NO_PATHCONV=1` in front of `docker` so the paths are not rewritten. The first run downloads the TeX Live image (several gigabytes). The image is pinned by digest so CI and local builds use the same LaTeX; `ci.toml` says how to update it. Overleaf also opens this folder if you prefer an online editor: upload `report/` as a project.
 
 ## Before submitting
 
