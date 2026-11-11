@@ -25,8 +25,21 @@ name = "lint"
 run = "ruff check ."
 requires = ["requirements-dev.txt"]
 
-# Switches on once the first analysis script has tests (tests/test_*.py).
 [[operation]]
 name = "unit-test"
 run = "python -m unittest discover -s tests -t . -q"
 requires = ["tests/__init__.py"]
+
+# Builds the report PDF with the official TeX Live image, then checks the
+# 10 page limit. Fails on any LaTeX error, so a broken section never merges.
+# The image is pinned by digest (TeX Live 2026, published 2026-11-01), so every
+# build uses the same LaTeX and the page count cannot change on its own. To
+# update it, pull a newer tag, rebuild, check the page count, and change the
+# digest here and in report/README.md together.
+[[operation]]
+name = "report-build"
+run = 'docker run --rm -v "{repo}/report:/doc" -w /doc texlive/texlive:latest@sha256:07e8062637249c4f780ca59f42cc2ed592bc2dc1db4320769406aee3f98aa70e latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex && python report/check_pages.py'
+requires = ["report/main.tex"]
+summary_patterns = ['(\d+) pages \(limit', '(\d+) to-do markers']
+summary_format = "{0} pages · {1} to-do markers"
+timeout_minutes = 20

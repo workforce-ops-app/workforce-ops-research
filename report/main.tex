@@ -1,0 +1,50 @@
+% The research report: IEEE conference format, at most 10 pages (report plan).
+% Build: see report/README.md. Each section lives in sections/<name>.tex, so the
+% two of us can edit different sections without merge conflicts.
+\documentclass[conference]{IEEEtran}
+
+% Packages
+\usepackage{cite}          % sorts and compresses citations, e.g. [1], [3]
+\usepackage{amsmath}       % formulas for precision, recall, F1
+\usepackage{graphicx}      % figures (data-flow diagram, results charts)
+\usepackage{booktabs}      % clean tables
+\usepackage{url}           % URLs in references break across lines
+\usepackage{xcolor}        % colour for the \pending marker below
+
+% \pending{...} marks text still to be written. It prints in red, so a draft PDF
+% shows at a glance what is missing. Before submitting, none may be left
+% (the page check in report/check_pages.py reports how many remain).
+\newcommand{\pending}[1]{\textcolor{red}{[To do: #1]}}
+
+\begin{document}
+
+\title{Secure Workforce Operations: Auditing a Multi-Tenant Web Application and Measuring Pattern-Based Attack Detection}
+
+\author{
+\IEEEauthorblockN{Michael Trosper}
+\IEEEauthorblockA{Department of Computer Science\\
+Idaho State University\\
+Pocatello, Idaho, USA}
+\and
+\IEEEauthorblockN{Corbin Hay}
+\IEEEauthorblockA{Department of Computer Science\\
+Idaho State University\\
+Pocatello, Idaho, USA}
+}
+
+\maketitle
+
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/related-work}
+\input{sections/methodology}
+\input{sections/evaluation}
+\input{sections/validity}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

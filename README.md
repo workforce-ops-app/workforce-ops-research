@@ -18,6 +18,7 @@
 | [`scripts/`](scripts/README.md) | Analysis scripts that turn datasets into results |
 | [`results/`](results/README.md) | Outputs of the scripts and the audit findings, exactly as the report cites them |
 | [`notes/`](notes/README.md) | Literature and published-data notes with citations |
+| [`report/`](report/README.md) | The report itself, in LaTeX with the IEEE conference class; CI builds the PDF and checks the page limit |
 
 ## Repeating the study
 
