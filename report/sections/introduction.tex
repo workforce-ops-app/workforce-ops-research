@@ -1,0 +1,15 @@
+% Problem, motivation, the three research questions, and why we expect what we
+% expect (report plan). Source: the security proposal.
+\section{Introduction}
+
+Small businesses increasingly schedule their staff through hosted web applications. Such an application is \emph{multi-tenant}: every customer company shares the same servers and database, and the application alone keeps each company's data apart. Within a company, it must also keep people within their role, so that an employee cannot approve their own time off or give themselves a manager's permissions. A single mistake in either check can expose personal data or let one person act as another.
+
+We are building the Workforce Operations Application, a scheduling system with time-off requests, shift swaps and coverage, and announcements, and have treated security as a requirement since the first design document. This report describes how we design, audit, and measure it, and answers three research questions. \pending{switch to the past tense once every feature named here is built and the audits are done; so far sign-in, companies and roles, schedules, and time-off requests are built.}
+
+\textbf{RQ1: What types of attacks can pattern-based (regular expression) inspection of input detect reliably?} Pattern matching is cheap and widely deployed in web application firewalls, but it is known to miss disguised attacks and to flag harmless text \pending{cite}. We expect it to do well on attacks with distinctive syntax, such as script tags, and worse on attacks whose characters also appear in ordinary text, such as the quotes and keywords of SQL injection.
+
+\textbf{RQ2: Are internal or external threats more common?} We answer in two parts: (a) from published breach data, and (b) as a case study of the findings our own audits produced for each attacker profile. We expect external actors to dominate published data, while our audits may find more problems reachable by signed-in users, because most of the application is behind sign-in.
+
+\textbf{RQ3: What part of the system is the most vulnerable?} We group audit findings by component and severity. We expect access control to be the most error-prone area, since it has the most rules.
+
+\pending{one paragraph: contributions, and the outline of the rest of the paper.}

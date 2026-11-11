@@ -36,3 +36,13 @@ Thumbs.db
 
 # Logs
 *.log
+
+# LaTeX build output (the PDF is built by CI, not committed)
+report/*.aux
+report/*.bbl
+report/*.blg
+report/*.fdb_latexmk
+report/*.fls
+report/*.log
+report/*.out
+report/*.pdf
