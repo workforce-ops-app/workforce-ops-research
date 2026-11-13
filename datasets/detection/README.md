@@ -97,3 +97,9 @@ python -m scripts.build_detection_datasets --check   # rebuild and compare with 
 ```
 
 The build needs Git and network access. It fetches each repository at its pinned commit (sparse, only the folders used) and the census file, which it refuses unless the checksum matches, into `.cache/` (ignored by Git). The same commits, seed, and rules always give the same files; `--check` confirms it through `SHA256SUMS`.
+
+On Windows, antivirus software may block some attack files in `.cache/` while the build reads them. Building in a Linux container avoids that:
+
+```
+docker run --rm -v "$PWD:/src:ro" python:3.13 sh -c "cp -r /src /w && cd /w && python -m scripts.build_detection_datasets --check"
+```

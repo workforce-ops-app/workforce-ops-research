@@ -263,6 +263,8 @@ def fetch_repository(name: str, spec: dict, paths: list[str], cache: Path) -> Pa
         shutil.rmtree(target, ignore_errors=True)
         target.mkdir(parents=True)
         _git("init", "-q", cwd=target)
+        # Files exactly as committed upstream, on every OS (no CRLF conversion on Windows).
+        _git("config", "core.autocrlf", "false", cwd=target)
         _git("remote", "add", "origin", spec["url"], cwd=target)
         _git("sparse-checkout", "set", "--no-cone", *paths, cwd=target)
         _git("fetch", "-q", "--depth", "1", "--filter=blob:none", "origin", spec["commit"], cwd=target)
