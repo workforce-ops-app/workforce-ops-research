@@ -1,0 +1,314 @@
+O'Brien
+O'Neil
+O'Connor
+D'Angelo
+D'Souza
+Dell'Acqua
+L'Esperance
+N'Dour
+Mary-Kate O'Hara
+Anne-Marie D'Arcy
+Jean-Luc Picard-Smith
+St. John
+McDonald's
+Ben & Jerry's
+Ana's shift
+Cara's & Ben's swap
+Marcus' notes
+Kitchen & Front of House
+R&D
+Q&A after the meeting
+AT&T
+Johnson & Johnson
+Smith; Jones
+Lee, Marcus
+Diaz-Ruiz
+van der Berg
+de la Cruz
+Mc'Kay
+I'll drop by at 5
+I'll be 10 min late, sorry!
+I can't make it; can someone cover?
+Can't make Tuesday's shift; I'll swap with Ben
+Don't forget the deliveries
+We're out of oat milk
+It's Ana's last day
+Please select a new shift
+Select the shift you want to swap
+Select all that apply
+Select one: morning or evening
+Please update your availability
+Update: the delivery is late
+Insert the new menu cards into the folders
+Delete the old schedule from the board
+Drop the boxes by the back door
+Drop by the office after close
+Drop-off at 3pm
+Union meeting on Tuesday
+Union Square location
+Order by Friday
+Order from the usual supplier
+Order #42 is ready
+Table 4 or 5, whichever is free
+Seat them at table 1 or 2
+1 or 2 people needed
+Where is the spare key?
+From 9 to 5
+Select from the list on the wall
+Join us for the team lunch
+Truncate the long notes if they don't fit
+Execute the closing checklist
+Exec meeting at 10
+Grant access to the walk-in for the new hire
+Revoke the old door code
+Create a new folder for invoices
+Alter the uniform if it doesn't fit
+Values: respect, safety, teamwork
+Like the last time, but shorter
+Count(*) of boxes: 12
+Sleep well, see you tomorrow
+Wait for the manager before opening
+Waitfor the delivery truck
+Benchmark: 3 tables per server
+Having the grill cleaned by 9
+Case closed, thanks!
+Null and void: old shift list
+None of the above
+Password reset instructions are on the wall
+1=1 seating rule: one guest, one menu
+2+2 shift pattern
+Rule of thumb: 1 = one hour
+-- Ben
+Shift swap -- Cara and Diego
+Notes -- see below
+-- end of notes --
+#1 priority: clean the grill
+#team #weekend
+Hashtag #NorthwindCafe
+Room 1/2
+50/50 split of tips
+24/7 support line
+Kitchen/Front of House
+see ../notes
+See ./docs for the menu
+../ means the folder above, explained in training
+Check the /menu page
+Files are in C:\Users\Shared\Schedules
+Path: Documents/Schedules/2026
+The /etc folder on the old laptop is full
+Read /etc/hosts tutorial for the IT class
+Back up the photos to D:\Backup
+www.example.com/menu
+https://example.com/menu?item=1&size=2
+https://example.org/schedule#week-2
+mailto:ana.diaz@example.com
+ana.diaz@example.com
+o'brien@example.com
+ben+cafe@example.org
+<3
+I <3 Mondays
+a < b
+5 > 3
+x <= y
+-> next step
+<- previous step
+Use <Tab> to move to the next field
+Press <Enter> to save
+<b>bold</b> is how the old menu printer marks headers
+Wrap the title in <h1> tags for the website update
+the <script> for the training video is on the shared drive
+Script for the hosts: greet, seat, offer water
+JavaScript class on Thursday
+javascript tutorial notes
+Alert the manager if the freezer alarm goes off
+alert: freezer temperature high
+onerror handling is covered in week 3
+Use onclick wisely, said the web class
+Image upload failed, try again
+svg logo for the menu
+iframe of the map on the website
+Document the cookie recipe
+document.write is old, the teacher said
+eval day: performance reviews this Friday
+Prompt the guest for allergies
+Confirm the booking by phone
+Body text for the email: welcome aboard!
+Style guide for the menu
+Import the guest list from the sheet
+50% off desserts after 9
+100% sure
+20% tip suggested
+10%-15% discount for staff
+Up 5% from last week
+%d of %d tasks done
+Progress: 80%
+$12.50 per hour
+$5 off coupon
+Costs $3.99 + tax
+$$$ pricey place
+${price} placeholder on the old menu template
+Price is $(market)
+Total: $1,200.00
+USD$45
+{name} will be added automatically
+Use {first name} in the greeting
+{{ }} curly braces mean optional in the form
+{0} replaced by the date in the printout
+Template: Hi {name}, your shift is {day}
+[Draft] new schedule
+(optional) bring your own apron
+Note: (see attached)
+Call me at (555) 010-0199
+555-0100 ext. 12
++1 (555) 010-0123
+Monday 7:00-15:00
+7-3 shift
+07:00 to 15:00
+Shift: 9a-5p
+10:30am / 2:30pm
+Back at 2:30; covering lunch
+Prep line; then grill; then close
+Prep; clean; restock
+Kitchen | Hosts
+Morning | Evening | Night
+Yes || No
+A && B both need to sign
+Tom & Jerry themed party
+echo the order back to the guest
+cat food delivery for the shop cat
+ls is short for list in the IT class
+ping me when you arrive
+Ping pong table in the break room
+rm 204 is the break room
+cd player in the break room is broken
+kill the lights when you leave
+sudo is a word from the computer class
+bash party on Friday
+Shell out for the new mixer?
+wget and curl are tools from the IT course
+id badge is in the drawer
+whoami game at the team building
+nc state game on Saturday
+The grep for "late" found nothing in the notes
+`back ticks` in the old menu font
+Price list (copy).docx
+menu_v2_final(1).pdf
+schedule.xlsx
+Invoice #2026-114
+Ref: INV-0042/A
+Item 3.2.1
+Version 2.0.1
+Error 404 on the old site
+50 % of tables booked
+Out of stock: 0
+-1 for the late bus
+1/0 errors in the spreadsheet
+Ana said "hello"
+"Quote" from the guest: "great coffee"
+He said, 'see you soon'
+It's 'open' on Sundays
+The ' key on the register is sticky
+Double "" quotes in the CSV export
+Back-slash \ key broken
+Use \n for a new line in the label printer
+C# class
+F# and C++ are languages
+SQL class homework due Friday
+Learning SQL: select, insert, update, delete
+The select menu on the website is broken
+Union Pacific delivery
+Drop table 7 from the floor plan, it's broken
+Delete the duplicate shift on Friday
+Order by price on the specials board
+Group by department for the report
+Inner join the two lists by hand
+Update set: new plates arrived
+Waitlist: 3 parties
+Sleep(8) hours recommended by the safety poster
+Benchmark test day
+Information schema of the menu: starters, mains, desserts
+Admin'll check tomorrow
+Table '1' is reserved
+Guest wants a 'quiet' table, or the patio
+Say 'or' not 'and' on the sign
+Ana or Ben, whoever is free
+1 or 1 coverage
+x=1
+a=b
+key=value
+size=large&color=blue
+?page=2
+item=fries&qty=2
+Name: <your name>
+<name>
+<Ana>
+<<Important>>
+>> see next page
+>>> quick note
+<!-- skip -->
+// comment from the last shift
+/* old note */
+/**/
+Prep/Grill/Host
+and/or
+either/or
+w/o onions
+w/ extra cheese
+24/7
+1/2 price
+N/A
+TBD
+~/notes
+~ approx 5 min
+^ see above
+* starred items are vegan
+** chef's special
+*** must do
+@channel meeting at 3
+@ana.diaz please check the order
+...and then the bus was late
+..
+.
+,
+;)
+:)
+:-(
+!!!
+???
+&
+&&
+|
+||
+;
+%
+$
+#
+{}
+[]
+()
+<>
+''
+""
+Rock 'n' roll night
+Fish 'n' chips
+'Til close
+'90s night
+Mother's Day brunch
+Children's menu
+The Smiths' party of 8
+Ana & co.
+Cafe au lait
+Creme brulee
+Jalapeno poppers
+Pho, ramen, udon
+Smores station
+2 x 4 boards for the patio
+6x9 envelopes
+3*3 tiles per row
+7 * 7 = 49 for the kids' math menu
+{{customer}} is a field in the mailing tool
+#{order_id} printed on the ticket
+%s placeholder in the label printer
+%n in the old printer manual means new line
+%x is how the receipt marks a voided item
+Use 100%% when the printer escapes percent
