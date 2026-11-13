@@ -46,3 +46,6 @@ report/*.fls
 report/*.log
 report/*.out
 report/*.pdf
+
+# Downloaded sources for the detection datasets (scripts/build_detection_datasets.py)
+.cache/

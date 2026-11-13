@@ -1,0 +1,3 @@
+{"ids": ["harmless-04047", "sql_injection-05497"], "labels": ["harmless", "sql_injection"]}
+{"ids": ["harmless-04034", "sql_injection-05639"], "labels": ["harmless", "sql_injection"]}
+{"ids": ["harmless-04036", "sql_injection-05659"], "labels": ["harmless", "sql_injection"]}
