@@ -7,6 +7,7 @@
 | Folder | Contents | Research question |
 |---|---|---|
 | `detection/` | precision, recall, and F1 per attack type, confusion matrix, timing | RQ1 |
+| `audit/` | raw output of each audit tool run (`audit/`), one folder per run named by its start time, each with `run.json` naming the tool, times, and commits scanned | RQ2 (b), RQ3; the detection field set (RQ1) |
 | `findings/` | the findings log exported from the audits: tool, vulnerability, fix, regression test, attacker profile, component, severity | RQ2 (b), RQ3 |
 | `recovery/` | restore drill times from the backup and restore runbook | supporting evidence |
 
