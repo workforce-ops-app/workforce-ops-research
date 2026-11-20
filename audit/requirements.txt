@@ -1,0 +1,3 @@
+# Tools for the audits (audit/README.md), pinned so every run uses the same version.
+# Not needed by CI. Install with: python -m pip install -r audit/requirements.txt
+sqlmap==1.10.11
