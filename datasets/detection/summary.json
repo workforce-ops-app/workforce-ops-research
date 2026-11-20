@@ -1,0 +1,76 @@
+{
+  "seed": 20261112,
+  "max_per_type": 1000,
+  "test_share": 0.4,
+  "commits": {
+    "PayloadsAllTheThings": "08ea40e77db3f42ef8f20c65196f3936a19b6c86",
+    "SecLists": "dbfb830d95e4f3da4fb7d7d277ed597de0ed7a18",
+    "workforce-ops-backend": "1ca970c4cf77765dae45a06e7d056067dfefc0d0"
+  },
+  "downloads": {
+    "census-surnames": "117c41cb4668727b7627b2845b6df3f83eb2a22a1813f42c0ff4bdcab86de135"
+  },
+  "lines_left_out": {
+    "binary data": 4,
+    "comment": 42,
+    "empty": 145,
+    "not UTF-8 text": 2
+  },
+  "entries_read": {
+    "command_injection": 8793,
+    "format_string": 217,
+    "harmless": 2873,
+    "path_traversal": 57943,
+    "sql_injection": 3190,
+    "xss": 19392
+  },
+  "duplicates_removed": 29417,
+  "after_duplicates": {
+    "command_injection": 8748,
+    "format_string": 201,
+    "harmless": 2869,
+    "path_traversal": 39165,
+    "sql_injection": 2505,
+    "xss": 9503
+  },
+  "after_sampling": {
+    "command_injection": 1000,
+    "format_string": 201,
+    "harmless": 2869,
+    "path_traversal": 1000,
+    "sql_injection": 1000,
+    "xss": 1000
+  },
+  "tuning": {
+    "command_injection": 599,
+    "format_string": 117,
+    "harmless": 1722,
+    "path_traversal": 600,
+    "sql_injection": 600,
+    "xss": 600
+  },
+  "test": {
+    "command_injection": 401,
+    "format_string": 84,
+    "harmless": 1147,
+    "path_traversal": 400,
+    "sql_injection": 400,
+    "xss": 400
+  },
+  "test_by_source": {
+    "command_injection/PayloadsAllTheThings": 22,
+    "command_injection/SecLists": 379,
+    "format_string/PayloadsAllTheThings": 43,
+    "format_string/SecLists": 41,
+    "harmless/census": 1000,
+    "harmless/demo": 23,
+    "harmless/team": 124,
+    "path_traversal/PayloadsAllTheThings": 164,
+    "path_traversal/SecLists": 236,
+    "sql_injection/PayloadsAllTheThings": 216,
+    "sql_injection/SecLists": 184,
+    "xss/PayloadsAllTheThings": 80,
+    "xss/SecLists": 320
+  },
+  "label_overlaps": 3
+}

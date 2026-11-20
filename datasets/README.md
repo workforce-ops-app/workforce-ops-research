@@ -21,4 +21,4 @@ Set by the detection study design (workforce-ops-app/workforce-ops-backend#115).
 
 | Folder | Contents | Status |
 |---|---|---|
-| `detection/` | public attack collections and tricky benign input for RQ1 | waiting on the design |
+| [`detection/`](detection/README.md) | public attack collections and harmless input for RQ1, split 60/40 into tuning and test | built (#6); the test set is not read until scoring |

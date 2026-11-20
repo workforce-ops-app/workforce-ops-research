@@ -1,0 +1,162 @@
+# Where every entry of the detection datasets comes from (slice DS1, research #6).
+# scripts/build_detection_datasets.py reads this file; nothing else decides what is used.
+# The rules are in docs/features/detection.md of the backend ("Data and how it is chosen").
+# Paths are inside each repository. A file is used whole (rule 1) unless it is listed
+# under "excluded", with the reason.
+
+# Fixed seed for the sample of 1,000 per type (rule 3) and for the 60/40 split.
+seed = 20261112
+# Rule 3: a type with more entries than this is sampled down to it.
+max_per_type = 1000
+# Share of each type and source that goes to the test set.
+test_share = 0.4
+
+# --- Pinned sources --------------------------------------------------------------------
+
+[repositories.PayloadsAllTheThings]
+url = "https://github.com/swisskyrepo/PayloadsAllTheThings.git"
+commit = "08ea40e77db3f42ef8f20c65196f3936a19b6c86"
+commit_date = "2026-10-30"
+license_file = "LICENSE"
+
+[repositories.SecLists]
+url = "https://github.com/danielmiessler/SecLists.git"
+commit = "dbfb830d95e4f3da4fb7d7d277ed597de0ed7a18"
+commit_date = "2026-11-12"
+license_file = "LICENSE"
+
+# The backend, for the demo data's text fields (read with Python's ast, never run).
+[repositories.workforce-ops-backend]
+url = "https://github.com/workforce-ops-app/workforce-ops-backend.git"
+commit = "1ca970c4cf77765dae45a06e7d056067dfefc0d0"
+commit_date = "2026-11-12"
+# The team's own repository: no outside licence to keep.
+
+# US Census Bureau, 2010 surnames: a work of the US government, in the public domain.
+[downloads.census-surnames]
+url = "https://www2.census.gov/topics/genealogy/2010surnames/names.zip"
+sha256 = "117c41cb4668727b7627b2845b6df3f83eb2a22a1813f42c0ff4bdcab86de135"
+member = "Names_2010Census.csv"
+# The most common surnames by rank. Enough that the harmless test set reaches 1,000.
+take = 2500
+
+# --- Attack input, by type -------------------------------------------------------------
+# One line = one entry. Lines starting with "comment" (per file) are the files' own
+# comments and are skipped.
+
+[[attack]]
+type = "sql_injection"
+repository = "PayloadsAllTheThings"
+include = ["SQL Injection/Intruder/*"]
+
+[[attack]]
+type = "sql_injection"
+repository = "SecLists"
+include = ["Fuzzing/Databases/SQLi/**/*.txt", "Fuzzing/Databases/*.fuzzdb.txt", "Fuzzing/login_bypass.txt"]
+
+[[attack]]
+type = "xss"
+repository = "PayloadsAllTheThings"
+include = ["XSS Injection/Intruders/*.txt"]
+# jsonp_endpoint.txt has "#Site.com:" headings between its payloads.
+comment = '^#[A-Za-z0-9.]+:\s*$'
+
+[[attack]]
+type = "xss"
+repository = "SecLists"
+include = ["Fuzzing/XSS/robot-friendly/*.txt", "Fuzzing/XSS/Polyglots/*.txt", "Fuzzing/HTML5sec-Injections-Jhaddix.txt", "Fuzzing/URI-XSS.fuzzdb.txt"]
+
+[[attack]]
+type = "path_traversal"
+repository = "PayloadsAllTheThings"
+include = ["Directory Traversal/Intruder/*.txt", "File Inclusion/Intruders/*.txt"]
+
+[[attack]]
+type = "path_traversal"
+repository = "SecLists"
+include = ["Fuzzing/LFI/**/*.txt"]
+
+[[attack]]
+type = "command_injection"
+repository = "PayloadsAllTheThings"
+include = ["Command Injection/Intruder/*.txt"]
+
+[[attack]]
+type = "command_injection"
+repository = "SecLists"
+include = ["Fuzzing/command-injection-commix.txt"]
+
+[[attack]]
+type = "format_string"
+repository = "PayloadsAllTheThings"
+include = ["Server Side Template Injection/Intruder/*"]
+
+[[attack]]
+type = "format_string"
+repository = "SecLists"
+include = ["Fuzzing/FormatString-Jhaddix.txt", "Fuzzing/template-engines-expression.txt", "Fuzzing/template-engines-identification.txt"]
+
+# --- Excluded files, with the reason (rule 1) ------------------------------------------
+# Files inside the folders above that are not used, and nearby files a reader might
+# expect to see used.
+
+[[excluded]]
+repository = "SecLists"
+path = "Fuzzing/Databases/SQLi/NoSQL.txt"
+reason = "NoSQL (MongoDB) injection: another query language, not one of the five types"
+
+[[excluded]]
+repository = "SecLists"
+path = "Fuzzing/Databases/OracleDB-SID.txt"
+reason = "a list of Oracle database names to guess, not injection input"
+
+[[excluded]]
+repository = "PayloadsAllTheThings"
+path = "XSS Injection/Files/*"
+reason = "whole files to upload (SVG, SWF, XML, notebooks): a different setting from a form field"
+
+[[excluded]]
+repository = "SecLists"
+path = "Fuzzing/XSS/human-friendly/*"
+reason = "the same payloads as robot-friendly, written for people (comments, XML wrappers)"
+
+[[excluded]]
+repository = "PayloadsAllTheThings"
+path = "File Inclusion/Intruders/php-filter-iconv.txt"
+reason = "fragments of PHP filter chains (convert.iconv.X.Y), harmless on their own"
+
+[[excluded]]
+repository = "PayloadsAllTheThings"
+path = "File Inclusion/Files/*"
+reason = "Python exploit scripts, not input; never run"
+
+[[excluded]]
+repository = "SecLists"
+path = "Fuzzing/template-engines-special-vars.txt"
+reason = "variable names to try once a template injection is found, not attacks on their own"
+
+[[excluded]]
+repository = "SecLists"
+path = "Fuzzing/SSI-Injection-Jhaddix.txt"
+reason = "server-side includes: another attack type, not one of the five"
+
+[[excluded]]
+repository = "SecLists"
+path = "Fuzzing/UnixAttacks.fuzzdb.txt"
+reason = "mixed attack types in one file with no label per line"
+
+[[excluded]]
+repository = "SecLists"
+path = "Fuzzing/Windows-Attacks.fuzzdb.txt"
+reason = "mixed attack types in one file with no label per line"
+
+[[excluded]]
+repository = "SecLists"
+path = "Fuzzing/Metacharacters.fuzzdb.txt"
+reason = "single characters and mixed types with no label per line"
+
+# --- Harmless input ---------------------------------------------------------------------
+
+[harmless.tricky]
+# Written by the team (committed before tuning starts): hard harmless input.
+file = "datasets/detection/harmless/tricky.txt"
