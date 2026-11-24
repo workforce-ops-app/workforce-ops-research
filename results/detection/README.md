@@ -24,4 +24,4 @@ The version is the detector's tag (`detector-v1`) or the first 12 characters of 
 
 | File | Detector | Notes |
 |---|---|---|
-| `tuning-1ca970c4cf77` | backend commit `1ca970c` (#134), before any tuning | the starting point tuning is measured against |
+| `tuning-1ca970c4cf77` | backend commit `1ca970c` (#134), before any tuning | the starting point tuning is measured against; timed on a laptop with Docker running, so the times are only a first look |
