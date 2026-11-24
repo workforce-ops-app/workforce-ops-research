@@ -16,5 +16,7 @@ The planned detector normalizes each text value the API receives (URL and HTML d
 
 \textbf{Scoring.} Each type will be split 60\% for tuning and 40\% for testing, stratified by type and source, and the split committed with checksums before tuning starts. The tagged detector will be scored on the test set once. We will report precision, recall, and $F_1$ per type with Wilson 95\% confidence intervals, a confusion matrix, and matching time per value, including crafted worst-case input. \pending{switch data selection and scoring to the past tense once the split is committed and the test set is scored.}
 
+\textbf{When a type counts as detected reliably.} We fixed this threshold before scoring the test set: a type is detected reliably when the lower ends of the 95\% Wilson intervals of both its precision and its recall are at least 90\%. Judging the lower end rather than the measured value means a small set cannot pass by chance; a type whose measured values reach 90\% but whose intervals do not is reported as not shown at this sample size. Precision also depends on how many entries of the other types the sets hold, which the collections decide rather than real traffic, so we report the false alarm rate on harmless input as well, separately for the team's tricky text and for ordinary text.
+
 \subsection{Replication}
 Datasets, scripts, results, and this report are published in the \texttt{workforce-ops-research} repository \pending{repository URL and the commit the results come from}.
