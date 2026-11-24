@@ -1,0 +1,47 @@
+# Inputs for the frontend audit (frontend #62): type each one into every text field of
+# every screen (names, comments, titles, reasons, search boxes), save it, then open every
+# screen that shows it again. A safe screen shows the text exactly as typed and runs
+# nothing: no pop-up, no broken layout, no new elements. The strings are test input
+# for our own local copy only (repository rules); each runs at most alert().
+#
+# Sources, chosen to cover each way text can reach a page: OWASP XSS Filter Evasion Cheat
+# Sheet (cheatsheetseries.owasp.org) and PortSwigger's Cross-site scripting cheat sheet
+# (portswigger.net/web-security/cross-site-scripting/cheat-sheet). One per line; lines
+# starting with # are notes. Fields with a short maximum length take the shortest that fit.
+#
+# Plain tags (would run if the text were put into the page as HTML)
+<script>alert(1)</script>
+<img src=x onerror=alert(1)>
+<svg onload=alert(1)>
+<svg><animate onbegin=alert(1) attributeName=x dur=1s>
+<iframe srcdoc="<script>alert(1)</script>">
+<details open ontoggle=alert(1)>
+<body onload=alert(1)>
+<math><mtext><table><mglyph><style><img src=x onerror=alert(1)>
+# Breaking out of an attribute or a quoted value (would run if text were put into an
+# attribute without quoting, or into inline script)
+" onmouseover="alert(1)
+' onfocus='alert(1)' autofocus='
+"><img src=x onerror=alert(1)>
+</title><script>alert(1)</script>
+</textarea><script>alert(1)</script>
+';alert(1);//
+# Links (would run if text became an href or src)
+javascript:alert(1)
+JaVaScRiPt:alert(1)
+data:text/html,<script>alert(1)</script>
+# Encoded forms (would run if the page decoded entities or URL encoding before inserting)
+&lt;img src=x onerror=alert(1)&gt;
+%3Cscript%3Ealert(1)%3C%2Fscript%3E
+&#60;script&#62;alert(1)&#60;/script&#62;
+# Template and prototype tricks (would matter if a template engine or object merging
+# read user text)
+{{constructor.constructor('alert(1)')()}}
+${alert(1)}
+__proto__
+{"__proto__":{"polluted":true}}
+# Layout and spoofing (not script, but should still show as plain text)
+<b>bold</b> <a href="https://example.com">a link</a>
+# (also try a name starting with the right-to-left mark U+202E, pasted from a character map)
+Line one
+Line two with a very long word: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

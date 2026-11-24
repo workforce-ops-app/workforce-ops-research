@@ -16,6 +16,7 @@
 |---|---|
 | [`datasets/`](datasets/README.md) | Input data, each with where it came from, why it was chosen, its license, and a checksum |
 | [`scripts/`](scripts/README.md) | Analysis scripts that turn datasets into results |
+| [`audit/`](audit/README.md) | Tools for the final audits (ZAP, sqlmap, a signed-out check, XSS inputs) and how to run them on a local copy |
 | [`results/`](results/README.md) | Outputs of the scripts and the audit findings, exactly as the report cites them |
 | [`notes/`](notes/README.md) | Literature and published-data notes with citations |
 | [`report/`](report/README.md) | The report itself, in LaTeX with the IEEE conference class; CI builds the PDF and checks the page limit |
