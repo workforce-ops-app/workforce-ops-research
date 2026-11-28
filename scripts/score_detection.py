@@ -11,10 +11,12 @@ What it does, in order (the measures are in the backend's docs/features/detectio
 1. Check the dataset files against datasets/detection/SHA256SUMS, so the numbers always
    come from the committed split and never from a file changed by hand.
 2. Load the detector: the backend's app/detection package, fetched at a pinned commit or
-   tag (sparse, only that folder), or, while tuning, from a local backend checkout. The
-   study scores exactly the code the API runs (rule DE10). The test split is refused
-   unless the detector is a tag named detector-v<N>, fetched from GitHub, and a result
-   for that tag does not exist yet: the test set is scored ONCE per version.
+   tag (sparse, only that folder), or, while tuning, from a local backend checkout. A
+   cached copy is used only if its HEAD is that commit and no file in it differs from
+   the commit; otherwise it is fetched again. The study scores exactly the code the API
+   runs (rule DE10). The test split is refused unless the detector is a tag named
+   detector-v<N>, fetched from GitHub, and a result for that tag does not exist yet:
+   the test set is scored ONCE per version.
 3. Ask the detector which attack types each entry looks like (`kinds(text)`).
 4. Count, per attack type, the true positives, false positives, and false negatives, and
    turn them into precision, recall, F1, and Wilson 95% intervals; build the confusion
@@ -39,6 +41,8 @@ import math
 import os
 import platform
 import re
+import shutil
+import stat
 import statistics
 import subprocess
 import sys
@@ -126,7 +130,73 @@ def fetch_detector(ref: str, config: dict) -> tuple[Path, str]:
     if not re.fullmatch(r"[0-9a-f]{40}", commit):
         raise SystemExit("--backend-ref must be a detector-v<N> tag or a full 40-character commit")
     spec["commit"] = commit
-    return fetch_repository(BACKEND, spec, ["/app/detection/"], CACHE), commit
+    # The cache only marks a finished fetch with a .done file; it does not prove the copy
+    # is still that commit, unchanged. So it is checked before anything is imported: a copy
+    # that fails is fetched again once, and refused if it still fails. The commit recorded
+    # with the scores then names exactly the code that was scored.
+    root = fetch_repository(BACKEND, spec, ["/app/detection/"], CACHE)
+    problem = checkout_problem(root, commit)
+    if problem:
+        print(f"the cached copy in {root} is not usable ({problem}); fetching it again", file=sys.stderr)
+        remove_copy(root)
+        root = fetch_repository(BACKEND, spec, ["/app/detection/"], CACHE)
+        problem = checkout_problem(root, commit)
+        if problem:
+            raise SystemExit(f"refusing to score {root}: {problem}")
+    return root, commit
+
+
+def remove_copy(root: Path) -> None:
+    """Delete a cached copy completely, so the next fetch starts from nothing.
+
+    Git marks its object files read-only, and on Windows a read-only file cannot be
+    deleted; so a file that refuses is made writable and deleted again. A copy that still
+    cannot be removed is refused, rather than fetched over a half-deleted folder.
+    """
+
+    def make_writable_and_retry(remove: Callable[[str], None], path: str, _error: BaseException) -> None:
+        os.chmod(path, stat.S_IWRITE)
+        remove(path)
+
+    if root.exists():
+        shutil.rmtree(root, onexc=make_writable_and_retry)
+    if root.exists():
+        raise SystemExit(f"could not delete {root}; delete it by hand and run again")
+
+
+def checkout_problem(root: Path, commit: str) -> str | None:
+    """Why the checkout in `root` is not exactly `commit`, or None when it is.
+
+    Three checks, all through git:
+    1. `root` is the top of its own repository (not a folder inside some other one,
+       which would answer the next two questions for the wrong repository);
+    2. its HEAD is `commit`;
+    3. no file differs from that commit: no tracked file changed, and no extra file,
+       untracked or ignored (an extra .py file in app/ could be imported too). The .done
+       marker the fetch writes is the one file allowed.
+    """
+    try:
+        top = Path(_git_output("rev-parse", "--show-toplevel", cwd=root))
+        if top.resolve() != root.resolve():
+            return f"it is not a checkout of its own (git finds {top})"
+        head = _git_output("rev-parse", "HEAD", cwd=root)
+        if head != commit:
+            return f"HEAD is {head}, not {commit}"
+        changes = _git_output(
+            "status",
+            "--porcelain",
+            "--untracked-files=all",
+            "--ignored",
+            "--",
+            ".",
+            ":(exclude).done",
+            cwd=root,
+        )
+    except (subprocess.CalledProcessError, OSError):
+        return "git cannot read it as a checkout"
+    if changes:
+        return "files differ from the commit: " + ", ".join(changes.splitlines())
+    return None
 
 
 def load_detector(root: Path, version: str, commit: str, clean: bool = True) -> Detector:
@@ -135,6 +205,9 @@ def load_detector(root: Path, version: str, commit: str, clean: bool = True) -> 
     #    imported, the study would score the wrong code, so that is refused.
     if "app" in sys.modules:
         raise SystemExit("another 'app' package is already imported; run the script on its own")
+    #    No __pycache__ is written into the checkout, so a fetched copy stays exactly the
+    #    commit and passes checkout_problem() the next time it is used.
+    sys.dont_write_bytecode = True
     sys.path.insert(0, str(root))
     detection = importlib.import_module("app.detection")
     detector = importlib.import_module("app.detection.detector")
@@ -230,11 +303,15 @@ def wilson(successes: int, trials: int, z: float = Z95) -> tuple[float, float] |
     return (max(0.0, centre - half), min(1.0, centre + half))
 
 
-def f1(precision: float | None, recall: float | None) -> float | None:
-    """The harmonic mean of precision and recall (missing if either is)."""
-    if precision is None or recall is None:
-        return None
-    return 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+def f1(tp: int, fp: int, fn: int) -> float | None:
+    """F1 straight from the counts: 2TP / (2TP + FP + FN).
+
+    This equals the harmonic mean of precision and recall whenever both exist, but it also
+    covers a type with entries that the detector never flags: precision is then undefined
+    (nothing flagged), yet F1 is a plain 0, since every entry of the type was missed. F1 is
+    missing only when there is nothing at all to count (no entries and no flags).
+    """
+    return ratio(2 * tp, 2 * tp + fp + fn)
 
 
 def verdict(
@@ -296,7 +373,7 @@ def score(entries: list[dict], flagged: dict[str, set[str]], kinds: tuple[str, .
             "precision_ci": precision_ci,
             "recall": recall,
             "recall_ci": recall_ci,
-            "f1": f1(precision, recall),
+            "f1": f1(tp, fp, fn),
             "recall_by_source": by_source,
             "verdict": verdict(precision, recall, precision_ci, recall_ci),
         }

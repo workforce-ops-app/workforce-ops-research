@@ -17,7 +17,9 @@ The version is the detector's tag (`detector-v1`) or the first 12 characters of 
 
 - **Tuning split:** scored as often as tuning needs, with any backend commit or a local checkout (`--backend-path`).
 - **Test split:** scored only with a `detector-v<N>` tag fetched from GitHub, and **once per tag**: the script refuses when `test-<tag>.json` already exists. A changed detector is a new tag with its own score, and the first score stays in the report.
-- **"Reliably"** was fixed before the test set was scored (report methodology): a type is detected reliably when the lower ends of the 95% Wilson intervals of both its precision and its recall are at least 90%.
+- **Detector copy:** a fetched detector is cached in `.cache/`. Before it is imported, the script checks that its HEAD is the recorded commit and that no file differs from that commit (no changed, untracked, or ignored file). A copy that fails is fetched again once, and the run is refused if it still fails, so the commit in the result always names the code that was scored.
+- **F1** is computed from the counts as 2TP / (2TP + FP + FN). A type with entries but no flags has no precision (nothing flagged) but F1 = 0; F1 is missing only when there is nothing to count.
+- **"Reliably"** was agreed by both of us and fixed before the test set was scored (report methodology): a type is detected reliably when the lower ends of the 95% Wilson intervals of both its precision and its recall are at least 90%.
 - **Times** come from the machine named in the JSON file and are only compared within one run.
 
 ## What is here

@@ -4,7 +4,7 @@
 
 \textbf{Selection of test data.} Public attack collections may over-represent attacks that are easy to recognise. The tricky harmless set and the field set are there to check this, but neither is drawn from real attackers.
 
-\textbf{Pattern tuning.} The same team wrote the patterns and the harmless set. The harmless set and the test split will be committed before tuning, and the test set scored once. \pending{past tense once done, with the commits that show it.}
+\textbf{Pattern tuning.} The same team wrote the patterns and the harmless set. The harmless set and the test split will be committed before tuning, and the test set scored once. \pending{past tense once done, with the commits that show it.} One slip happened: while the scoring script was being written, the first five entries of the test split (five command injection strings from PayloadsAllTheThings) were shown once on screen. No pattern was tuned on them or changed after it, and the tests never read the test split; we record it so the reader can judge it.
 
 \textbf{Lab environment.} All testing runs on local copies, not a production deployment, and timing comes from one machine.
 

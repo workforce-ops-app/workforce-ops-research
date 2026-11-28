@@ -8,6 +8,8 @@ The committed test set is never opened here.
 
 import hashlib
 import json
+import shutil
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -76,8 +78,21 @@ class WilsonTest(unittest.TestCase):
     def test_nothing_to_measure_is_missing_not_zero(self):
         self.assertIsNone(sd.wilson(0, 0))
         self.assertIsNone(sd.ratio(0, 0))
-        self.assertIsNone(sd.f1(None, 0.5))
-        self.assertEqual(sd.f1(0.0, 0.0), 0.0)
+        # F1 is missing only when there is nothing to count at all.
+        self.assertIsNone(sd.f1(0, 0, 0))
+
+
+class F1Test(unittest.TestCase):
+    def test_f1_is_2tp_over_2tp_plus_fp_plus_fn(self):
+        # sql in the hand-worked example: TP 2, FP 1, FN 1 gives 4 / 6.
+        self.assertAlmostEqual(sd.f1(2, 1, 1), 2 / 3)
+        self.assertEqual(sd.f1(5, 0, 0), 1.0)
+
+    def test_entries_but_no_flags_is_zero_not_missing(self):
+        # Precision is undefined (nothing flagged), but every entry was missed: F1 is 0.
+        self.assertEqual(sd.f1(0, 0, 3), 0.0)
+        # Only false alarms, no entries of the type: also 0.
+        self.assertEqual(sd.f1(0, 2, 0), 0.0)
 
 
 class ScoreTest(unittest.TestCase):
@@ -132,7 +147,8 @@ class ScoreTest(unittest.TestCase):
         sql = scores["per_type"][SQL]
         self.assertIsNone(sql["precision"])
         self.assertEqual(sql["recall"], 0.0)
-        self.assertIsNone(sql["f1"])
+        # Three sql entries, all missed: F1 = 0 / (0 + 0 + 3) = 0, not missing.
+        self.assertEqual(sql["f1"], 0.0)
         self.assertEqual(sql["verdict"], "not reliable")
 
     def test_a_label_the_detector_has_no_type_for_is_refused(self):
@@ -226,6 +242,95 @@ class ResolveTagTest(unittest.TestCase):
     def test_a_missing_tag_is_refused(self):
         with mock.patch.object(sd, "_git_output", return_value=""), self.assertRaises(SystemExit):
             sd.resolve_tag("url", "detector-v9")
+
+
+def git(*args: str, cwd: Path) -> str:
+    """Run git in a test repository. The identity is passed here, so the test does not
+    depend on (or change) anyone's git config."""
+    # Fixed arguments built by the tests, no shell.
+    done = subprocess.run(  # noqa: S603
+        ["git", "-c", "user.name=test", "-c", "user.email=test@example.com", *args],  # noqa: S607
+        cwd=cwd,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return done.stdout.strip()
+
+
+def make_checkout() -> tuple[Path, str]:
+    """A small git repository shaped like the cached backend copy: app/detection/ with one
+    committed file, the .done marker the fetch writes, and its commit. Built with the
+    plumbing commands (write-tree, commit-tree), so no commit hook runs."""
+    root = Path(tempfile.mkdtemp())
+    git("init", "-q", cwd=root)
+    (root / "app" / "detection").mkdir(parents=True)
+    (root / "app" / "detection" / "__init__.py").write_bytes(b"PATTERNS = ()\n")
+    git("add", "app", cwd=root)
+    tree = git("write-tree", cwd=root)
+    commit = git("commit-tree", tree, "-m", "detector", cwd=root)
+    git("update-ref", "HEAD", commit, cwd=root)
+    (root / ".done").write_text(commit, encoding="utf-8")
+    return root, commit
+
+
+class CheckoutTest(unittest.TestCase):
+    """The cached detector copy is used only when it is exactly the recorded commit."""
+
+    def setUp(self):
+        self.root, self.commit = make_checkout()
+        self.addCleanup(shutil.rmtree, self.root, ignore_errors=True)
+
+    def test_an_unchanged_checkout_at_the_commit_passes(self):
+        # The .done marker is the one extra file allowed.
+        self.assertIsNone(sd.checkout_problem(self.root, self.commit))
+
+    def test_a_wrong_head_is_found(self):
+        problem = sd.checkout_problem(self.root, "f" * 40)
+        self.assertIn("HEAD is", problem)
+
+    def test_a_modified_detector_file_is_found(self):
+        (self.root / "app" / "detection" / "__init__.py").write_bytes(b"PATTERNS = ('changed',)\n")
+        self.assertIn("files differ", sd.checkout_problem(self.root, self.commit))
+
+    def test_an_extra_file_is_found(self):
+        # An untracked .py file could be imported along with the detector.
+        (self.root / "app" / "__init__.py").write_bytes(b"")
+        self.assertIn("files differ", sd.checkout_problem(self.root, self.commit))
+
+    def test_a_folder_that_is_not_a_checkout_is_found(self):
+        # A plain folder inside the checkout: git would answer for the repository above it.
+        self.assertIsNotNone(sd.checkout_problem(self.root / "app", self.commit))
+
+    def fetch(self, copies: list[Path], commit: str):
+        """fetch_detector() with fetch_repository() handing out `copies` in turn."""
+        config = {"repositories": {sd.BACKEND: {"url": "url", "commit": commit}}}
+        with mock.patch.object(sd, "fetch_repository", side_effect=copies) as fetch:
+            return sd.fetch_detector(commit, config), fetch
+
+    def test_a_good_cached_copy_is_used_as_it_is(self):
+        (root, commit), fetch = self.fetch([self.root], self.commit)
+        self.assertEqual((root, commit), (self.root, self.commit))
+        self.assertEqual(fetch.call_count, 1)
+
+    def test_a_changed_cached_copy_is_fetched_again(self):
+        changed, _ = make_checkout()
+        self.addCleanup(shutil.rmtree, changed, ignore_errors=True)
+        (changed / "app" / "detection" / "__init__.py").write_bytes(b"PATTERNS = ('changed',)\n")
+        with mock.patch("sys.stderr"):
+            (root, _), fetch = self.fetch([changed, self.root], self.commit)
+        # The bad copy was deleted, so the second fetch started from nothing.
+        self.assertFalse(changed.exists())
+        self.assertEqual(root, self.root)
+        self.assertEqual(fetch.call_count, 2)
+
+    def test_a_copy_still_wrong_after_fetching_again_is_refused(self):
+        # Both copies are at another commit than the one asked for (a wrong HEAD).
+        again, _ = make_checkout()
+        self.addCleanup(shutil.rmtree, again, ignore_errors=True)
+        with mock.patch("sys.stderr"), self.assertRaises(SystemExit) as refused:
+            self.fetch([self.root, again], "f" * 40)
+        self.assertIn("HEAD is", str(refused.exception))
 
 
 class RunTest(unittest.TestCase):
