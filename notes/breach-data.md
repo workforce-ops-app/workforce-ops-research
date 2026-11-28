@@ -1,6 +1,6 @@
 # Breach data notes for RQ2 (a): are internal or external threats more common?
 
-Compiled 2026-11-09. Updated 2026-11-10 after review: the Ponemon/DTEX negligent share now uses the figure the full report prints, and the HHS data is marked as context only. Figures marked "(derived)" were calculated from counts printed in the primary source. Figures marked "(not verified from primary source)" come only from press coverage or vendor summaries.
+Compiled 2026-11-09. Updated 2026-11-10 after review: the Ponemon/DTEX negligent share now uses the figure the full report prints, and the HHS data is marked as context only. Updated 2026-11-25 (research #5): every 2026 Ponemon/DTEX figure is now checked against the full report (public copy, page numbers given), and the HHS small-breach share is marked as a CY2022 figure. Updated 2026-11-27 after review: the CY2024 HHS figures now come from the primary HHS report, read in a browser, with page numbers. Figures marked "(derived)" were calculated from counts printed in the primary source. Figures marked "(not verified from primary source)" come only from press coverage or vendor summaries.
 
 ## In short
 
@@ -105,20 +105,20 @@ The 2024 DBIR (p. 15) explains its 35% internal figure: "in part because of impr
 
 ## 4. Ponemon Institute / DTEX Systems, Cost of Insider Risks Global Report
 
-**Citation (latest):** Ponemon Institute and DTEX Systems, *2026 Cost of Insider Risks Global Report*, Feb. 2026. Press release: https://www.dtex.ai/newsroom/press-releases/insider-risk-costs-rise-as-ai-creates-new-blind-spots/ ; report page: https://ponemon.dtex.ai/ . The full report PDF sits behind a form. The negligent share below was checked against Figure 1 of the full report; the other 2026 figures still come from the press release until they are checked against it too.
+**Citation (latest):** Ponemon Institute and DTEX Systems, *2026 Cost of Insider Risks Global Report*, Feb. 2026. Press release: https://www.dtex.ai/newsroom/press-releases/insider-risk-costs-rise-as-ai-creates-new-blind-spots/ ; report page: https://ponemon.dtex.ai/ . The vendor's download sits behind a form; a public copy of the full report: https://www.cinrmcoe-cdecgrin.ca/_files/ugd/026a5a_c7b8bd224389449ba499ff8e7e2c37c9.pdf . Every 2026 figure below was checked against that copy; page numbers are the PDF's.
 
 | Measure | 2026 edition (2025 data) | 2025 edition (2024 data) |
 |---|---|---|
-| Average annual cost of insider incidents per organisation | USD 19.5M | USD 17.4M |
-| Organisations / respondents | 354 organisations, 8,750 IT and IT security practitioners | 349 organisations, 8,306 practitioners |
-| Regions | North America, EMEA, Asia-Pacific | same |
-| Insider incidents per organisation | 25.4 | (not checked) |
-| Negligent / careless insiders | 3,970 of 7,490 incidents, 53% (full report, Fig. 1); 13.8 incidents per org, USD 10.3M per year, about USD 747,107 per incident (press release) | 55% of incidents |
-| Malicious insiders | 27% of incidents, USD 4.7M (not verified from primary source; from IT Brief coverage) | 25% of incidents |
-| Outsmarted insiders (credential theft) | (not given in press release) | 20% of incidents |
-| Time to contain | 67 days | 81 days |
-| Total insider incidents | 7,490 (full report, Fig. 1) | (not checked) |
-| Fieldwork | Two months ending September 2025 | (not checked) |
+| Average annual cost of insider incidents per organisation | USD 19.5M (p. 12) | USD 17.4M |
+| Organisations / respondents | 354 organisations, 8,750 interviews with IT, IT security, and line-of-business practitioners (pp. 14-15) | 349 organisations, 8,306 practitioners |
+| Regions | North America 47%, Europe 26%, Middle East 12%, Asia-Pacific 15% (p. 15) | same |
+| Insider incidents per organisation | 25.4 (p. 15) | 24.6 (p. 15) |
+| Negligent / careless insiders | 3,970 of 7,490 incidents, 53% (Fig. 1, p. 16); 13.8 incidents per org, USD 10.3M per year, about USD 747,107 per incident (p. 13) | 55% of incidents |
+| Malicious insiders | 2,022 of 7,490 incidents, 27% (Fig. 1, p. 16); USD 4,675,388 per year, USD 742,125 per incident (Table 2, p. 18) | 25% of incidents |
+| Outsmarted insiders (credential theft) | 1,498 of 7,490 incidents, 20% (Fig. 1, p. 16) | 20% of incidents |
+| Time to contain | 67 days (p. 7) | 81 days |
+| Total insider incidents | 7,490 (Fig. 1, p. 16) | 7,868 (p. 15) |
+| Fieldwork | Two months ending September 2025 (p. 14) | (not checked) |
 
 2025 edition figures come from the DTEX press release of 25 Feb 2025: https://www.dtex.ai/newsroom/press-releases/2025-ponemon-insider-threat-report-release
 
@@ -155,18 +155,18 @@ The 2024 DBIR (p. 15) explains its 35% internal figure: "in part because of impr
 
 ## 6. US HHS Office for Civil Rights, breaches of unsecured protected health information
 
-**Citation:** U.S. Department of Health and Human Services, Office for Civil Rights, *Annual Report to Congress on Breaches of Unsecured Protected Health Information for Calendar Year 2024*. URL: https://www.hhs.gov/sites/default/files/breach-report-to-congress-2024.pdf . The HHS site returned HTTP 403 to automated download, so the figures below come from secondary summaries and are **not verified from primary source**.
+**Citation:** U.S. Department of Health and Human Services, Office for Civil Rights, *Annual Report to Congress on Breaches of Unsecured Protected Health Information for Calendar Year 2024*. URL: https://www.hhs.gov/sites/default/files/breach-report-to-congress-2024.pdf . The HHS site refuses automated downloads, so the report was opened in a browser; page numbers are the PDF's. The CY2024 figures below are from this primary report [8], except the one marked otherwise.
 
 | Measure | CY2024 | CY2022 |
 |---|---|---|
-| Large breaches (500 or more individuals) | 663 | 626 |
-| Individuals affected (large breaches) | 242,908,056 | 41,747,613 |
-| Hacking/IT incidents, share of large breaches | 81% (99.45% of affected individuals) | 74% |
-| Unauthorized access/disclosure, share of large breaches | (not found) | 22% |
-| Small breaches (fewer than 500) | 74,299 reports | 63,966 reports |
-| Unauthorized access/disclosure, share of small breaches | "more common" (no %) | 93% |
+| Large breaches (500 or more individuals) | 663 (p. 11) | 626 |
+| Individuals affected (large breaches) | 242,908,056 (not verified from primary source) | 41,747,613 |
+| Hacking/IT incidents, share of large breaches | 81%: 534 of 663, affecting 241,582,022 individuals (p. 11) | 74% |
+| Unauthorized access/disclosure, share of large breaches | 16%: 108 of 663 (p. 11) | 22% |
+| Small breaches (fewer than 500) | 74,299 reports (p. 21) | 63,966 reports |
+| Unauthorized access/disclosure, share of small breaches | 94%: 69,773 of 74,299 (p. 21) | 93% |
 
-Sources: Paubox (10 June 2026) for CY2024: https://www.paubox.com/blog/ocr-reports-242-million-records-exposed-in-2024 ; HIPAA Journal for CY2022: https://www.hipaajournal.com/ocr-reports-to-congress-on-hipaa-compliance-and-data-breaches/
+Sources: CY2024 from the primary HHS report [8], pages as given; only the total of individuals affected comes from Paubox (10 June 2026) [9]: https://www.paubox.com/blog/ocr-reports-242-million-records-exposed-in-2024 . CY2022 from HIPAA Journal [12] (not verified from primary source): https://www.hipaajournal.com/ocr-reports-to-congress-on-hipaa-compliance-and-data-breaches/
 
 **What it measures:** breaches that HIPAA-covered entities must report by law, classified by breach type (not by actor).
 
@@ -191,8 +191,8 @@ ENISA Threat Landscape was not consulted in detail for this note. It describes t
 | DBIR 2026, Healthcare | 2026 | Same | Healthcare breaches | 1,438 breaches | 19% | 81% |
 | DBIR 2026, Public Administration | 2026 | Same | Public sector breaches | (see p. 90) | 44% | 56% |
 | IBM Cost of a Data Breach | 2025 (Mar 2024 to Feb 2025) | Interview survey | Breached organisations | 600 orgs | Human error root cause 26%; malicious insider cost USD 4.92M (share not printed) | Not split; malicious or criminal 51% includes insiders |
-| Ponemon/DTEX Cost of Insider Risks | 2026 (2025) | Interview survey of orgs with insider events | Insider incidents | 354 orgs, 8,750 respondents | 53% of insider incidents negligent (3,970 of 7,490, Fig. 1); 27% malicious (not verified from primary source) | Not measured |
-| HHS OCR breach reports | CY2024 | Mandatory regulatory reporting | Reported HIPAA breaches | 663 large breaches | Not measured (breach types, not actors); unauthorized access/disclosure dominates small breaches (93% in CY2022) | Not measured; context only: hacking/IT is 81% of large breaches (not verified from primary source) |
+| Ponemon/DTEX Cost of Insider Risks | 2026 (2025) | Interview survey of orgs with insider events | Insider incidents | 354 orgs, 8,750 respondents | 53% of insider incidents negligent (3,970 of 7,490) and 27% malicious (2,022 of 7,490), Fig. 1 | Not measured |
+| HHS OCR breach reports | CY2024 | Mandatory regulatory reporting | Reported HIPAA breaches | 663 large and 74,299 small breaches | Not measured (breach types, not actors); context only: unauthorized access/disclosure is 94% of small breaches (69,773 of 74,299, p. 21) and 16% of large breaches (108 of 663, p. 11) | Not measured; context only: hacking/IT is 81% of large breaches (534 of 663, affecting 241,582,022 individuals, p. 11) |
 
 ## Why they differ
 
@@ -246,8 +246,8 @@ ENISA Threat Landscape was not consulted in detail for this note. It describes t
 
 [10] Verizon, "Vulnerability exploitation top breach entry point, 2026 industry-wide DBIR finds," press release, May 2026. [Online]. Available: https://www.verizon.com/about/news/breach-industry-wide-dbir-finds
 
-[11] "Insider risk costs soar as AI reshapes workplace data," IT Brief Australia, Feb. 25, 2026. [Online]. Available: https://itbrief.com.au/story/insider-risk-costs-soar-as-ai-reshapes-workplace-data
+[11] (No longer cited: the 27% malicious share it reported is now taken from the full report [13].) "Insider risk costs soar as AI reshapes workplace data," IT Brief Australia, Feb. 25, 2026. [Online]. Available: https://itbrief.com.au/story/insider-risk-costs-soar-as-ai-reshapes-workplace-data
 
 [12] "OCR reports to Congress on HIPAA compliance and data breaches," HIPAA Journal, Feb. 22, 2024. [Online]. Available: https://www.hipaajournal.com/ocr-reports-to-congress-on-hipaa-compliance-and-data-breaches/
 
-[13] Ponemon Institute and DTEX Systems, "2026 Cost of Insider Risks Global Report," Feb. 2026. [Online]. Available: https://ponemon.dtex.ai/ (full report behind a form; Figure 1 gives the negligent share)
+[13] Ponemon Institute and DTEX Systems, "2026 Cost of Insider Risks Global Report," Feb. 2026. [Online]. Available: https://www.cinrmcoe-cdecgrin.ca/_files/ugd/026a5a_c7b8bd224389449ba499ff8e7e2c37c9.pdf (public copy of the full report; the vendor's page https://ponemon.dtex.ai/ asks for a form)
