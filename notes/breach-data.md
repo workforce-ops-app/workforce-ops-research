@@ -1,6 +1,6 @@
 # Breach data notes for RQ2 (a): are internal or external threats more common?
 
-Compiled 2026-11-09. Updated 2026-11-10 after review: the Ponemon/DTEX negligent share now uses the figure the full report prints, and the HHS data is marked as context only. Updated 2026-11-25 (research #5): every 2026 Ponemon/DTEX figure is now checked against the full report (public copy, page numbers given), and the HHS small-breach share is marked as a CY2022 figure. Figures marked "(derived)" were calculated from counts printed in the primary source. Figures marked "(not verified from primary source)" come only from press coverage or vendor summaries.
+Compiled 2026-11-09. Updated 2026-11-10 after review: the Ponemon/DTEX negligent share now uses the figure the full report prints, and the HHS data is marked as context only. Updated 2026-11-25 (research #5): every 2026 Ponemon/DTEX figure is now checked against the full report (public copy, page numbers given), and the HHS small-breach share is marked as a CY2022 figure. Updated 2026-11-27 after review: the CY2024 HHS figures now come from the primary HHS report, read in a browser, with page numbers. Figures marked "(derived)" were calculated from counts printed in the primary source. Figures marked "(not verified from primary source)" come only from press coverage or vendor summaries.
 
 ## In short
 
@@ -155,18 +155,18 @@ The 2024 DBIR (p. 15) explains its 35% internal figure: "in part because of impr
 
 ## 6. US HHS Office for Civil Rights, breaches of unsecured protected health information
 
-**Citation:** U.S. Department of Health and Human Services, Office for Civil Rights, *Annual Report to Congress on Breaches of Unsecured Protected Health Information for Calendar Year 2024*. URL: https://www.hhs.gov/sites/default/files/breach-report-to-congress-2024.pdf . The HHS site returned HTTP 403 to automated download, so the figures below come from secondary summaries and are **not verified from primary source**.
+**Citation:** U.S. Department of Health and Human Services, Office for Civil Rights, *Annual Report to Congress on Breaches of Unsecured Protected Health Information for Calendar Year 2024*. URL: https://www.hhs.gov/sites/default/files/breach-report-to-congress-2024.pdf . The HHS site refuses automated downloads, so the report was opened in a browser; page numbers are the PDF's. The CY2024 figures below are from this primary report [8], except the one marked otherwise.
 
 | Measure | CY2024 | CY2022 |
 |---|---|---|
-| Large breaches (500 or more individuals) | 663 | 626 |
-| Individuals affected (large breaches) | 242,908,056 | 41,747,613 |
-| Hacking/IT incidents, share of large breaches | 81% (99.45% of affected individuals) | 74% |
-| Unauthorized access/disclosure, share of large breaches | (not found) | 22% |
-| Small breaches (fewer than 500) | 74,299 reports | 63,966 reports |
-| Unauthorized access/disclosure, share of small breaches | "more common" (no %) | 93% |
+| Large breaches (500 or more individuals) | 663 (p. 11) | 626 |
+| Individuals affected (large breaches) | 242,908,056 (not verified from primary source) | 41,747,613 |
+| Hacking/IT incidents, share of large breaches | 81%: 534 of 663, affecting 241,582,022 individuals (p. 11) | 74% |
+| Unauthorized access/disclosure, share of large breaches | 16%: 108 of 663 (p. 11) | 22% |
+| Small breaches (fewer than 500) | 74,299 reports (p. 21) | 63,966 reports |
+| Unauthorized access/disclosure, share of small breaches | 94%: 69,773 of 74,299 (p. 21) | 93% |
 
-Sources: Paubox (10 June 2026) for CY2024: https://www.paubox.com/blog/ocr-reports-242-million-records-exposed-in-2024 ; HIPAA Journal for CY2022: https://www.hipaajournal.com/ocr-reports-to-congress-on-hipaa-compliance-and-data-breaches/
+Sources: CY2024 from the primary HHS report [8], pages as given; only the total of individuals affected comes from Paubox (10 June 2026) [9]: https://www.paubox.com/blog/ocr-reports-242-million-records-exposed-in-2024 . CY2022 from HIPAA Journal [12] (not verified from primary source): https://www.hipaajournal.com/ocr-reports-to-congress-on-hipaa-compliance-and-data-breaches/
 
 **What it measures:** breaches that HIPAA-covered entities must report by law, classified by breach type (not by actor).
 
@@ -192,7 +192,7 @@ ENISA Threat Landscape was not consulted in detail for this note. It describes t
 | DBIR 2026, Public Administration | 2026 | Same | Public sector breaches | (see p. 90) | 44% | 56% |
 | IBM Cost of a Data Breach | 2025 (Mar 2024 to Feb 2025) | Interview survey | Breached organisations | 600 orgs | Human error root cause 26%; malicious insider cost USD 4.92M (share not printed) | Not split; malicious or criminal 51% includes insiders |
 | Ponemon/DTEX Cost of Insider Risks | 2026 (2025) | Interview survey of orgs with insider events | Insider incidents | 354 orgs, 8,750 respondents | 53% of insider incidents negligent (3,970 of 7,490) and 27% malicious (2,022 of 7,490), Fig. 1 | Not measured |
-| HHS OCR breach reports | CY2024 | Mandatory regulatory reporting | Reported HIPAA breaches | 663 large breaches | Not measured (breach types, not actors); unauthorized access/disclosure dominates small breaches (93% is a CY2022 figure; for CY2024 only "more common", no percentage, in the coverage used) | Not measured; context only: hacking/IT is 81% of large breaches (not verified from primary source) |
+| HHS OCR breach reports | CY2024 | Mandatory regulatory reporting | Reported HIPAA breaches | 663 large and 74,299 small breaches | Not measured (breach types, not actors); context only: unauthorized access/disclosure is 94% of small breaches (69,773 of 74,299, p. 21) and 16% of large breaches (108 of 663, p. 11) | Not measured; context only: hacking/IT is 81% of large breaches (534 of 663, affecting 241,582,022 individuals, p. 11) |
 
 ## Why they differ
 
